@@ -3,7 +3,9 @@ Solitaire encryption algorithm implementation: https://www.schneier.com/academic
 
 Cards courtesy of: https://code.google.com/archive/p/vector-playing-cards
 
+```
 $ npm install
 $ node server.js
+```
 
 Navigate to localhost:8080

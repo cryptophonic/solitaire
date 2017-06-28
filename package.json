@@ -1,0 +1,23 @@
+{
+  "name": "solitaire",
+  "version": "0.0.1",
+  "description": "Solitaire encryption algorithm",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjackson001/solitaire.git"
+  },
+  "author": "Mark Jackson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mjackson001/solitaire/issues"
+  },
+  "homepage": "https://github.com/mjackson001/solitaire#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}

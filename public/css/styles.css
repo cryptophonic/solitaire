@@ -1,0 +1,108 @@
+#lookup {
+    font-size: 12px;
+    padding-bottom: 20px;
+}
+
+#lookup .red {
+    color: #f00;
+}
+
+#lookup td {
+    width: 60px;
+}
+
+#lookup .top {
+    text-align: center;
+}
+
+#alphabet {
+    font-size: 12px;
+    padding-bottom: 20px
+}
+
+#alphabet td {
+    width: 40px;
+    text-align: center;
+}
+
+#encrypt {
+    padding-top: 10px;
+    font-size: 12px;
+}
+
+#encrypt td {
+    width: 40px;
+    text-align: center;
+}
+
+.label {
+    font-weight: bold;
+    background: #ccc;
+}
+
+#display {
+    padding-top: 20px;
+}
+
+#deck {
+    height: 120px;
+}
+
+#fan {
+    position: relative;
+}
+
+.card {
+    width: 75px;
+    position: absolute;
+}
+
+.count {
+    position: relative;
+    height: 15px;
+}
+
+.count span {
+    font-size: 8px;
+    position: absolute;
+}
+
+.count-5 {
+    left: 684px;
+}
+
+.count-10 {
+    left: 610px;
+}
+
+.count-15 {
+    left: 540px;
+}
+
+.count-20 {
+    left: 470px;
+}
+
+.count-25 {
+    left: 400px;
+}
+
+.count-30 {
+    left: 330px;
+}
+
+.count-35 {
+    left: 260px;
+}
+
+.count-40 {
+    left: 190px;
+}
+
+.count-45 {
+    left: 120px;
+}
+
+.count-50 {
+    left: 50px;
+}

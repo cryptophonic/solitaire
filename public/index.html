@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+        <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+    </head>
+    <body>
+        <h1>Solitaire (Pontifex) Encryption Tool</h1>
+        <p>Implementation of the Solitaire encryption algorithm as described on <a href="https://www.schneier.com/academic/solitaire">Bruce Schneier's page.<a>
+        <table id="lookup">
+            <tr class="label top">
+                <td></td>
+                <td>Ace</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+                <td>Jack</td>
+                <td>Queen</td>
+                <td>King</td>
+            </tr>
+            <tr>
+                <td class="label">Clubs</td>
+                <td>&clubs; 1</td>
+                <td>&clubs; 2</td>
+                <td>&clubs; 3</td>
+                <td>&clubs; 4</td>
+                <td>&clubs; 5</td>
+                <td>&clubs; 6</td>
+                <td>&clubs; 7</td>
+                <td>&clubs; 8</td>
+                <td>&clubs; 9</td>
+                <td>&clubs; 10</td>
+                <td>&clubs; 11</td>
+                <td>&clubs; 12</td>
+                <td>&clubs; 13</td>
+            </tr>
+            <tr>
+                <td class="label">Diamonds</td>
+                <td><span class="red">&diams;</span> 14</td>
+                <td><span class="red">&diams;</span> 15</td>
+                <td><span class="red">&diams;</span> 16</td>
+                <td><span class="red">&diams;</span> 17</td>
+                <td><span class="red">&diams;</span> 18</td>
+                <td><span class="red">&diams;</span> 19</td>
+                <td><span class="red">&diams;</span> 20</td>
+                <td><span class="red">&diams;</span> 21</td>
+                <td><span class="red">&diams;</span> 22</td>
+                <td><span class="red">&diams;</span> 23</td>
+                <td><span class="red">&diams;</span> 24</td>
+                <td><span class="red">&diams;</span> 25</td>
+                <td><span class="red">&diams;</span> 26</td>
+            </tr>
+            <tr>
+                <td class="label">Hearts</td>
+                <td><span class="red">&hearts;</span> 27 (1)</td>
+                <td><span class="red">&hearts;</span> 28 (2)</td>
+                <td><span class="red">&hearts;</span> 29 (3)</td>
+                <td><span class="red">&hearts;</span> 30 (4)</td>
+                <td><span class="red">&hearts;</span> 31 (5)</td>
+                <td><span class="red">&hearts;</span> 32 (6)</td>
+                <td><span class="red">&hearts;</span> 33 (7)</td>
+                <td><span class="red">&hearts;</span> 34 (8)</td>
+                <td><span class="red">&hearts;</span> 35 (9)</td>
+                <td><span class="red">&hearts;</span> 36 (10)</td>
+                <td><span class="red">&hearts;</span> 37 (11)</td>
+                <td><span class="red">&hearts;</span> 38 (12)</td>
+                <td><span class="red">&hearts;</span> 39 (13)</td>
+            </tr>
+            <tr>
+                <td class="label">Spades</td>
+                <td>&spades; 40 (14)</td>
+                <td>&spades; 41 (15)</td>
+                <td>&spades; 42 (16)</td>
+                <td>&spades; 43 (17)</td>
+                <td>&spades; 44 (18)</td>
+                <td>&spades; 45 (19)</td>
+                <td>&spades; 46 (20)</td>
+                <td>&spades; 47 (21)</td>
+                <td>&spades; 48 (22)</td>
+                <td>&spades; 49 (23)</td>
+                <td>&spades; 50 (24)</td>
+                <td>&spades; 51 (25)</td>
+                <td>&spades; 52 (26)</td>
+            </tr>
+        </table>
+        <table id="alphabet">
+            <tr class="label">
+                <td>a</td>
+                <td>b</td>
+                <td>c</td>
+                <td>d</td>
+                <td>e</td>
+                <td>f</td>
+                <td>g</td>
+                <td>h</td>
+                <td>i</td>
+                <td>j</td>
+                <td>k</td>
+                <td>l</td>
+                <td>m</td>
+                <td>n</td>
+                <td>o</td>
+                <td>p</td>
+                <td>q</td>
+                <td>r</td>
+                <td>s</td>
+                <td>t</td>
+                <td>u</td>
+                <td>v</td>
+                <td>w</td>
+                <td>x</td>
+                <td>y</td>
+                <td>z</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>13</td>
+                <td>14</td>
+                <td>15</td>
+                <td>16</td>
+                <td>17</td>
+                <td>18</td>
+                <td>19</td>
+                <td>20</td>
+                <td>21</td>
+                <td>22</td>
+                <td>23</td>
+                <td>24</td>
+                <td>25</td>
+                <td>26</td>
+            </tr>
+            <tr>
+                <td>27</td>
+                <td>28</td>
+                <td>29</td>
+                <td>30</td>
+                <td>31</td>
+                <td>32</td>
+                <td>33</td>
+                <td>34</td>
+                <td>35</td>
+                <td>36</td>
+                <td>37</td>
+                <td>38</td>
+                <td>39</td>
+                <td>40</td>
+                <td>41</td>
+                <td>42</td>
+                <td>43</td>
+                <td>44</td>
+                <td>45</td>
+                <td>46</td>
+                <td>47</td>
+                <td>48</td>
+                <td>49</td>
+                <td>50</td>
+                <td>51</td>
+                <td>52</td>
+            </tr>
+        </table>
+        <button onClick="initial()">Initial</button>
+        <button onClick="shuffle()">Shuffle</button>
+        <div>
+            <button onClick="keydeck()">Key Deck</button>
+            <input id="key" size="128">
+        </div>
+        <div id="display">
+            <div class="count">
+                <span class="count-50">50</span>
+                <span class="count-45">45</span>
+                <span class="count-40">40</span>
+                <span class="count-35">35</span>
+                <span class="count-30">30</span>
+                <span class="count-25">25</span>
+                <span class="count-20">20</span>
+                <span class="count-15">15</span>
+                <span class="count-10">10</span>
+                <span class="count-5">5</span>
+            </div>
+            <div id="deck">
+                <div id="fan" class="deck"></div>
+            </div>
+            <div class="count">
+                <span class="count-50">50</span>
+                <span class="count-45">45</span>
+                <span class="count-40">40</span>
+                <span class="count-35">35</span>
+                <span class="count-30">30</span>
+                <span class="count-25">25</span>
+                <span class="count-20">20</span>
+                <span class="count-15">15</span>
+                <span class="count-10">10</span>
+                <span class="count-5">5</span>
+            </div>
+        </div>
+        <textarea id="output" cols="80" rows="4"></textarea>
+        <button onClick="doclear()">Clear</button>
+        <div>
+            <input type="radio" name="mode" value="encrypt" checked> Encrypt
+            <input type="radio" name="mode" value="decrypt"> Decrypt
+        </div>
+        <button onClick="fullround()">One Round</button>
+        <table id="encrypt">
+            <tr class="label">
+                <td>a</td>
+                <td>b</td>
+                <td>c</td>
+                <td>d</td>
+                <td>e</td>
+                <td>f</td>
+                <td>g</td>
+                <td>h</td>
+                <td>i</td>
+                <td>j</td>
+                <td>k</td>
+                <td>l</td>
+                <td>m</td>
+                <td>n</td>
+                <td>o</td>
+                <td>p</td>
+                <td>q</td>
+                <td>r</td>
+                <td>s</td>
+                <td>t</td>
+                <td>u</td>
+                <td>v</td>
+                <td>w</td>
+                <td>x</td>
+                <td>y</td>
+                <td>z</td>
+            </tr>
+            <tr>
+                <td id="encrypt_a">-</td>
+                <td id="encrypt_b">-</td>
+                <td id="encrypt_c">-</td>
+                <td id="encrypt_d">-</td>
+                <td id="encrypt_e">-</td>
+                <td id="encrypt_f">-</td>
+                <td id="encrypt_g">-</td>
+                <td id="encrypt_h">-</td>
+                <td id="encrypt_i">-</td>
+                <td id="encrypt_j">-</td>
+                <td id="encrypt_k">-</td>
+                <td id="encrypt_l">-</td>
+                <td id="encrypt_m">-</td>
+                <td id="encrypt_n">-</td>
+                <td id="encrypt_o">-</td>
+                <td id="encrypt_p">-</td>
+                <td id="encrypt_q">-</td>
+                <td id="encrypt_r">-</td>
+                <td id="encrypt_s">-</td>
+                <td id="encrypt_t">-</td>
+                <td id="encrypt_u">-</td>
+                <td id="encrypt_v">-</td>
+                <td id="encrypt_w">-</td>
+                <td id="encrypt_x">-</td>
+                <td id="encrypt_y">-</td>
+                <td id="encrypt_z">-</td>
+            </tr>
+        </table>
+        <div id="steps">
+            <p>Practice Individual Steps</p>
+            <ol>
+                <li><button onClick="step1()">Move Joker 1 (black joker) down one card</button></li>
+                <li><button onClick="step2()">Move Joker 2 (red joker> down two cards</button></li>
+                <li><button onClick="step3()">Triple Cut</button></li>
+                <li><button onClick="step4()">Card Cut</button></li>
+                <li><button onClick="step5()">Output Card</button></li>
+            </ol>
+        </div>
+    </body>
+</html>

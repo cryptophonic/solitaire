@@ -7,7 +7,112 @@
     </head>
     <body>
         <h1>Solitaire (Pontifex) Encryption Tool</h1>
-        <p>Implementation of the Solitaire encryption algorithm as described on <a href="https://www.schneier.com/academic/solitaire">Bruce Schneier's page.<a>
+        <p>This is an implementation of the Solitaire encryption algorithm as described on <a href="https://www.schneier.com/academic/solitaire">Bruce Schneier's instructional page</a>. The algorithm was originally invented for the novel Cryptonomicon, and is a strong encryption cipher usable without any computer or any connection to a network. It's ideal for small high-value messages where electronic security can't be guaranteed.</p>
+        <p>Bitcoin hardware wallet passphrases consisting of 12 to 24 words of up to 10 characters can easily be encrypted using this algorithm using nothing more than a deck of cards. Because it's not networked or electronic in nature, there is no chance for a network-based attack if performed offline.</p>
+        <p>This page can be used as a practice page to learn the algorithm, and as an aid for computing key decks and lookup tables.  At no time will any part of the plain text message have to be entered in order to obtain secure results.<p>
+        <p>Full source is available here: <a href="http://www.github.com/mjackson001/solitaire">http://www.github.com/mjackson001/solitaire</a>.</p>
+        <div>
+            <button onClick="initial()">Initial</button>
+            <button onClick="shuffle()">Shuffle</button>
+        </div>
+        <div>
+            <button onClick="keydeck()">Key Deck</button>
+            <input id="key" size="128">
+        </div>
+        <div id="display">
+            <div class="count">
+                <span class="count-50">50</span>
+                <span class="count-45">45</span>
+                <span class="count-40">40</span>
+                <span class="count-35">35</span>
+                <span class="count-30">30</span>
+                <span class="count-25">25</span>
+                <span class="count-20">20</span>
+                <span class="count-15">15</span>
+                <span class="count-10">10</span>
+                <span class="count-5">5</span>
+            </div>
+            <div id="deck">
+                <div id="fan" class="deck"></div>
+            </div>
+            <div class="count">
+                <span class="count-50">50</span>
+                <span class="count-45">45</span>
+                <span class="count-40">40</span>
+                <span class="count-35">35</span>
+                <span class="count-30">30</span>
+                <span class="count-25">25</span>
+                <span class="count-20">20</span>
+                <span class="count-15">15</span>
+                <span class="count-10">10</span>
+                <span class="count-5">5</span>
+            </div>
+        </div>
+        <textarea id="output" cols="80" rows="4"></textarea>
+        <button onClick="doclear()">Clear</button>
+        <div>
+            <input type="radio" name="mode" value="encrypt" checked> Encrypt
+            <input type="radio" name="mode" value="decrypt"> Decrypt
+        </div>
+        <button onClick="fullround()">One Round</button>
+        <table id="encrypt">
+            <tr class="label">
+                <td>a</td>
+                <td>b</td>
+                <td>c</td>
+                <td>d</td>
+                <td>e</td>
+                <td>f</td>
+                <td>g</td>
+                <td>h</td>
+                <td>i</td>
+                <td>j</td>
+                <td>k</td>
+                <td>l</td>
+                <td>m</td>
+                <td>n</td>
+                <td>o</td>
+                <td>p</td>
+                <td>q</td>
+                <td>r</td>
+                <td>s</td>
+                <td>t</td>
+                <td>u</td>
+                <td>v</td>
+                <td>w</td>
+                <td>x</td>
+                <td>y</td>
+                <td>z</td>
+            </tr>
+            <tr>
+                <td id="encrypt_a">-</td>
+                <td id="encrypt_b">-</td>
+                <td id="encrypt_c">-</td>
+                <td id="encrypt_d">-</td>
+                <td id="encrypt_e">-</td>
+                <td id="encrypt_f">-</td>
+                <td id="encrypt_g">-</td>
+                <td id="encrypt_h">-</td>
+                <td id="encrypt_i">-</td>
+                <td id="encrypt_j">-</td>
+                <td id="encrypt_k">-</td>
+                <td id="encrypt_l">-</td>
+                <td id="encrypt_m">-</td>
+                <td id="encrypt_n">-</td>
+                <td id="encrypt_o">-</td>
+                <td id="encrypt_p">-</td>
+                <td id="encrypt_q">-</td>
+                <td id="encrypt_r">-</td>
+                <td id="encrypt_s">-</td>
+                <td id="encrypt_t">-</td>
+                <td id="encrypt_u">-</td>
+                <td id="encrypt_v">-</td>
+                <td id="encrypt_w">-</td>
+                <td id="encrypt_x">-</td>
+                <td id="encrypt_y">-</td>
+                <td id="encrypt_z">-</td>
+            </tr>
+        </table>
         <table id="lookup">
             <tr class="label top">
                 <td></td>
@@ -174,106 +279,6 @@
                 <td>50</td>
                 <td>51</td>
                 <td>52</td>
-            </tr>
-        </table>
-        <button onClick="initial()">Initial</button>
-        <button onClick="shuffle()">Shuffle</button>
-        <div>
-            <button onClick="keydeck()">Key Deck</button>
-            <input id="key" size="128">
-        </div>
-        <div id="display">
-            <div class="count">
-                <span class="count-50">50</span>
-                <span class="count-45">45</span>
-                <span class="count-40">40</span>
-                <span class="count-35">35</span>
-                <span class="count-30">30</span>
-                <span class="count-25">25</span>
-                <span class="count-20">20</span>
-                <span class="count-15">15</span>
-                <span class="count-10">10</span>
-                <span class="count-5">5</span>
-            </div>
-            <div id="deck">
-                <div id="fan" class="deck"></div>
-            </div>
-            <div class="count">
-                <span class="count-50">50</span>
-                <span class="count-45">45</span>
-                <span class="count-40">40</span>
-                <span class="count-35">35</span>
-                <span class="count-30">30</span>
-                <span class="count-25">25</span>
-                <span class="count-20">20</span>
-                <span class="count-15">15</span>
-                <span class="count-10">10</span>
-                <span class="count-5">5</span>
-            </div>
-        </div>
-        <textarea id="output" cols="80" rows="4"></textarea>
-        <button onClick="doclear()">Clear</button>
-        <div>
-            <input type="radio" name="mode" value="encrypt" checked> Encrypt
-            <input type="radio" name="mode" value="decrypt"> Decrypt
-        </div>
-        <button onClick="fullround()">One Round</button>
-        <table id="encrypt">
-            <tr class="label">
-                <td>a</td>
-                <td>b</td>
-                <td>c</td>
-                <td>d</td>
-                <td>e</td>
-                <td>f</td>
-                <td>g</td>
-                <td>h</td>
-                <td>i</td>
-                <td>j</td>
-                <td>k</td>
-                <td>l</td>
-                <td>m</td>
-                <td>n</td>
-                <td>o</td>
-                <td>p</td>
-                <td>q</td>
-                <td>r</td>
-                <td>s</td>
-                <td>t</td>
-                <td>u</td>
-                <td>v</td>
-                <td>w</td>
-                <td>x</td>
-                <td>y</td>
-                <td>z</td>
-            </tr>
-            <tr>
-                <td id="encrypt_a">-</td>
-                <td id="encrypt_b">-</td>
-                <td id="encrypt_c">-</td>
-                <td id="encrypt_d">-</td>
-                <td id="encrypt_e">-</td>
-                <td id="encrypt_f">-</td>
-                <td id="encrypt_g">-</td>
-                <td id="encrypt_h">-</td>
-                <td id="encrypt_i">-</td>
-                <td id="encrypt_j">-</td>
-                <td id="encrypt_k">-</td>
-                <td id="encrypt_l">-</td>
-                <td id="encrypt_m">-</td>
-                <td id="encrypt_n">-</td>
-                <td id="encrypt_o">-</td>
-                <td id="encrypt_p">-</td>
-                <td id="encrypt_q">-</td>
-                <td id="encrypt_r">-</td>
-                <td id="encrypt_s">-</td>
-                <td id="encrypt_t">-</td>
-                <td id="encrypt_u">-</td>
-                <td id="encrypt_v">-</td>
-                <td id="encrypt_w">-</td>
-                <td id="encrypt_x">-</td>
-                <td id="encrypt_y">-</td>
-                <td id="encrypt_z">-</td>
             </tr>
         </table>
         <div id="steps">

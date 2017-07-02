@@ -148,16 +148,12 @@ function step4(input) {
 
 function step5() {
     var index = deck[0]
-    if (index < 53) {
-        var value = deck[index+1]
-        if (value < 52) {
-            var output = (value % 26) + 1
-        } else {
-            // n/a joker
-            var output = "X"
-        }
+    if (index == 53) index--  // both jokers == 52
+    var value = deck[index+1]
+    if (value < 52) {
+        var output = (value % 26) + 1
     } else {
-        // 2nd joker is top card - index too large
+        // n/a joker
         var output = "X"
     }
     // Update encrypt table
